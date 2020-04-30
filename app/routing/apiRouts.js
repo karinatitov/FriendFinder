@@ -1,21 +1,22 @@
 var express = require('express');
 var path = require('path');
 var fs = require('fs');
-
 var app = module.exports = express(); 
 
 app.get("/api/friends", function (req, res) {
 
-    res.json(friends);
+  //  console.log(res);
 
+    res.sendFile(path.join(__dirname, "../data/friends.js"));
 
 });
-app.post("/api/friends", function (req, res) {
 
+app.post("/api/friends", function (req, res) {
+    fs.readFile("./app/data/friends.js", "utf-8", (err, data) => {
     var newFriend = req.body;
     var dif = 1000;
     var match;
-    for (var i = 0; i < friends.length; i++) {
+    for (var i = 0; i < data.length; i++) {
 
         var existingFriend = friends[i];
         var existingFriendScores = existingFriend.scores;
@@ -42,5 +43,6 @@ app.post("/api/friends", function (req, res) {
 
     }
 
+})
 
 })

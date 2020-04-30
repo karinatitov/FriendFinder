@@ -14,8 +14,11 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 // require routing files
-require("./app/routing/apiRouts")(app);
-require("./app/routing/htmlRouts")(app);
+var apiRouts = require('./app/routing/apiRouts');
+var htmlRouts = require('./app/routing/htmlRouts');
+app.use(apiRouts);
+app.use(htmlRouts);
+
 // listener
 app.listen(PORT, err => {
     if (err) throw err;
