@@ -1,13 +1,14 @@
 var express = require('express');
 var path = require('path');
 var fs = require('fs');
+var friends = require("../data/friends.js");
 var app = module.exports = express(); 
 
 app.get("/api/friends", function (req, res) {
 
-  //  console.log(res);
 
-    res.sendFile(path.join(__dirname, "../data/friends.js"));
+   //  res.sendFile(path.join(__dirname, "../data/friends.js"));
+   res.json(friends);
 
 });
 
