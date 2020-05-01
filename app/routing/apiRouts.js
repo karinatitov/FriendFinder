@@ -2,22 +2,22 @@ var express = require('express');
 var path = require('path');
 var fs = require('fs');
 var friends = require("../data/friends.js");
-var app = module.exports = express(); 
+var app = module.exports = express();
 
 app.get("/api/friends", function (req, res) {
 
 
-   //  res.sendFile(path.join(__dirname, "../data/friends.js"));
-   res.json(friends);
+    //  res.sendFile(path.join(__dirname, "../data/friends.js"));
+    res.json(friends);
 
 });
 
 app.post("/api/friends", function (req, res) {
-    fs.readFile("./app/data/friends.js", "utf-8", (err, data) => {
+
     var newFriend = req.body;
     var dif = 1000;
     var match;
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < friends.length; i++) {
 
         var existingFriend = friends[i];
         var existingFriendScores = existingFriend.scores;
@@ -36,14 +36,12 @@ app.post("/api/friends", function (req, res) {
             match = existingFriend;
             dif = currentDif;
         }
-
-        friends.push(newFriend);
-
-        res.json(match);
-
-
     }
 
-})
+
+    friends.push(newFriend);
+
+    res.json(match);
+
 
 })
