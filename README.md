@@ -3,7 +3,7 @@ This full-stack site will take in results from your users' surveys, then compare
 
 ### Technologies Used:
 * Node.js
-* Node packages ("path", "fs", and most important "express"
+* Node packages ("path", "fs", and most important "express")
 
  #### Also used heroku for hosting the app
  
